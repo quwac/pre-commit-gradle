@@ -3,22 +3,29 @@
     description: Runs java unit tests using gradle check
     entry: gradle-check
     language: python
+    require_serial: true
+    types: [kotlin]
     pass_filenames: false
 -   id: gradle-build
     name: gradle build
     description: Builds java project using "gradle build"
     entry: gradle-build
     language: python
+    require_serial: true
+    types: [kotlin]
     pass_filenames: false
 -   id: gradle-spotless
     name: gradle spotless
     description: Lints the project using "gradle spotlessCheck spotlessApply"
     entry: gradle-spotless
     language: python
+    require_serial: true
+    types: [kotlin]
     pass_filenames: false
 -   id: gradle-task
     name: gradle task
     description: Runs arbitrary gradle tasks for java project
     entry: gradle-task
     language: python
+    types: [kotlin]
     pass_filenames: false
