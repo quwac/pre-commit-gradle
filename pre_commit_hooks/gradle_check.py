@@ -11,7 +11,7 @@ from pre_commit_hooks.util import run_gradle_wrapper_task, run_gradle_task
 def main(argv=None):  # type: (Optional[Sequence[str]]) -> int
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        '-d', '--dir', action='str',
+        '-d', '--dir', type=str,
         default=os.getcwd(),
         help='The directory to run gradle in. Defaults to the current working directory.',
     )
