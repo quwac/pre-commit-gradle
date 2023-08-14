@@ -1,6 +1,7 @@
 from __future__ import print_function
 
 import argparse
+import os
 from typing import Optional
 from typing import Sequence
 
@@ -9,6 +10,11 @@ from pre_commit_hooks.util import cmd_output, run_gradle_wrapper_task, run_gradl
 
 def main(argv=None):  # type: (Optional[Sequence[str]]) -> int
     parser = argparse.ArgumentParser()
+    parser.add_argument(
+        '-d', '--dir', action='str',
+        default=os.getcwd(),
+        help='The directory to run gradle in. Defaults to the current working directory.',
+    )
     parser.add_argument(
         '-w', '--wrapper', action='store_true',
         help='Runs commands using gradlew. Requires gradle wrapper configuration within the project.'
@@ -21,9 +27,9 @@ def main(argv=None):  # type: (Optional[Sequence[str]]) -> int
     args = parser.parse_args(argv)
 
     if args.wrapper:
-        return run_gradle_wrapper_task(args.output, *args.tasks)
+        return run_gradle_wrapper_task(args.dir, args.output, *args.tasks)
     else:
-        return run_gradle_task(args.output, *args.tasks)
+        return run_gradle_task(args.dir, args.output, *args.tasks)
 
 
 if __name__ == '__main__':

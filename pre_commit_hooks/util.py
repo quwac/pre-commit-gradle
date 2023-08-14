@@ -41,7 +41,8 @@ def cmd_output(output, *cmd, **kwargs):  # type: (bool, *str, **Any) -> str
     return stdout
 
 
-def run_gradle_task(output, *tasks):  # type: (bool, *str) -> int
+def run_gradle_task(dir, output, *tasks):  # type: (str, bool, *str) -> int
+    os.chdir(dir)
     if which('gradle') is None:
         print(f"{bcolors.FAIL}Gradle could not be detected.{bcolors.ENDC}")
         return 1
@@ -55,7 +56,8 @@ def run_gradle_task(output, *tasks):  # type: (bool, *str) -> int
         return 1
 
 
-def run_gradle_wrapper_task(output, *tasks):  # type: (bool, *str) -> int
+def run_gradle_wrapper_task(dir, output, *tasks):  # type: (str, bool, *str) -> int
+    os.chdir(dir)
     if which('gradlew', path='.') is None:
         print(
             f"{bcolors.FAIL}Could not locate gradle wrapper. Initialize with `gradle wrapper`, "
